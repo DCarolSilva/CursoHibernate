@@ -3,6 +3,7 @@ package com.daniela.prueba.repo.daoImpl;
 import com.daniela.prueba.modelo.VehiculoDanielaSilva;
 import com.daniela.prueba.modelo.mapper.VehiculoDanielaSilvaMapper;
 import com.daniela.prueba.repo.dao.VehiculoDanielaSilvaDAO;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -12,6 +13,12 @@ import java.util.Optional;
 @Repository
 public class VehiculoDanielaSilvaDAOImpl implements VehiculoDanielaSilvaDAO {
     JdbcTemplate jdbcTemplate;
+
+    @Autowired
+    public VehiculoDanielaSilvaDAOImpl(JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
+    }
+
 
     @Override
     public List<VehiculoDanielaSilva> obtenerTodo() {
@@ -26,7 +33,7 @@ public class VehiculoDanielaSilvaDAOImpl implements VehiculoDanielaSilvaDAO {
     @Override
     public void guardar(VehiculoDanielaSilva vehiculoDanielaSilva) {
         jdbcTemplate.update("INSERT INTO Vehiculo_Daniela_Silva " +
-                "(marca,modelo,color,transmision,anio) values (?,?,?,?,?)",vehiculoDanielaSilva.getMarca(),
+                        "(marca,modelo,color,transmision,anio) values (?,?,?,?,?)", vehiculoDanielaSilva.getMarca(),
                 vehiculoDanielaSilva.getModelo(),
                 vehiculoDanielaSilva.getColor(),
                 vehiculoDanielaSilva.getTransmision(),
