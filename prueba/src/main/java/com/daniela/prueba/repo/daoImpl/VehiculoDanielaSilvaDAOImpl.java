@@ -27,7 +27,7 @@ public class VehiculoDanielaSilvaDAOImpl implements VehiculoDanielaSilvaDAO {
 
     @Override
     public Optional<VehiculoDanielaSilva> obtenerPorId(Integer id) {
-        return jdbcTemplate.query("select * from Vehiculo_Daniela_Silva where id = ?" + id, new VehiculoDanielaSilvaMapper()).stream().findFirst();
+        return jdbcTemplate.query("select * from Vehiculo_Daniela_Silva where id = " + id, new VehiculoDanielaSilvaMapper()).stream().findFirst();
     }
 
     @Override

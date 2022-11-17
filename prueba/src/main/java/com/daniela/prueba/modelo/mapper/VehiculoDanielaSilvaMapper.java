@@ -15,8 +15,8 @@ public class VehiculoDanielaSilvaMapper implements RowMapper<VehiculoDanielaSilv
         vehiculoDanielaSilva.setId(rs.getInt("id"));
         vehiculoDanielaSilva.setMarca(rs.getString("marca"));
         vehiculoDanielaSilva.setModelo(rs.getString("modelo"));
-        vehiculoDanielaSilva.setModelo(rs.getString("color"));
-        vehiculoDanielaSilva.setTransmision(rs.getString("trasmision"));
+        vehiculoDanielaSilva.setColor(rs.getString("color"));
+        vehiculoDanielaSilva.setTransmision(rs.getString("transmision"));
         vehiculoDanielaSilva.setAnio(rs.getInt("anio"));
         return vehiculoDanielaSilva;
     }

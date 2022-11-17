@@ -42,8 +42,39 @@
 			<artifactId>mssql-jdbc</artifactId>
 			<version>11.2.0.jre11</version>
 		</dependency>
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-boot-starter</artifactId>
+			<version>3.0.0</version>
+		</dependency>
 	</dependencies>
-
+<profiles>
+	<profile>
+		<id>dev</id>
+		<properties>
+			<usrDev>${usuarioDev}</usrDev>
+			<passDev>${passwordDev}</passDev>
+		</properties>
+	</profile>
+	<profile>
+		<id>preprod</id>
+		<properties>
+			<usrPre>${usuarioPre}</usrPre>
+			<passPre>${passwordPre}</passPre>
+		</properties>
+	</profile>
+	<profile>
+		<id>prod</id>
+		<activation>
+			<activeByDefault>true</activeByDefault>
+		</activation>
+		<properties>
+			<spring.profile.active>prod</spring.profile.active>
+			<usrProd>${usuarioProd}</usrProd>
+			<passProd>${passwordProd}</passProd>
+		</properties>
+	</profile>
+</profiles>
 	<build>
 		<plugins>
 			<plugin>
