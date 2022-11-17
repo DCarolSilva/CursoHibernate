@@ -24,19 +24,19 @@ public class VehiculoDanielaControlador {
         return new ResponseEntity<>(vehiculoDanielaSilvaServicio.obtenerTodo(), HttpStatus.OK);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/lock/{id}")
     public ResponseEntity<VehiculoDanielaSilva> obtenerPorId(@PathVariable Integer id) {
         return vehiculoDanielaSilvaServicio.obtenerPorId(id).map(vehiculo -> new ResponseEntity<>(vehiculo, HttpStatus.OK))
                 .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
-    @PostMapping("/guardar")
+    @PostMapping("/lock/guardar")
     public ResponseEntity guardar(@RequestBody VehiculoDanielaSilva vehiculoDanielaSilva) {
         vehiculoDanielaSilvaServicio.guardar(vehiculoDanielaSilva);
         return new ResponseEntity(HttpStatus.OK);
     }
 
-    @DeleteMapping("/eliminar/{id}")
+    @DeleteMapping("/lock/eliminar/{id}")
     public ResponseEntity eliminar(@PathVariable Integer id) {
         vehiculoDanielaSilvaServicio.eliminar(id);
         return new ResponseEntity<>(HttpStatus.OK);
