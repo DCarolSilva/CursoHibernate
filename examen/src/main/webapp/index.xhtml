@@ -1,0 +1,102 @@
+<!--
+/**
+ * @author Daniela Carolina Silva Laguna.
+ */
+-->
+<f:view xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:f="http://java.sun.com/jsf/core"
+        xmlns:p="http://primefaces.org/ui"
+        xmlns:h="http://java.sun.com/jsf/html">
+    <h:head>
+        <title>Consumo Api</title>
+        <!-- ruta: localhost:8081/index.xhtml  -->
+    </h:head>
+    <h:body>
+        <h:form id="principal">
+            <p:panel>
+                <p:messages id="messages" showDetail="true" closable="true">
+                    <p:autoUpdate/>
+                </p:messages>
+                <p:outputPanel style="width:100%!important;margin-top:15px;">
+                    <p:outputLabel value="Vehiculo CRUD" style="font-weight:bold;font-size:25"></p:outputLabel>
+                    <div class="ui-inputgroup" style="width:100%!important;margin-top:15px;">
+                        <p:inputText value="#{sinSeguridad.idBuscar}" placeholder="Búsqueda por Id" autocomplete="off"/>
+                        <p:commandButton value="Buscar" actionListener="#{sinSeguridad.buscar}"
+                                         update="principal"/>
+                    </div>
+                </p:outputPanel>
+                <p:dataTable id="dtVehiculo" widgetVar="dtVehiculo"
+                             var="v" value="#{sinSeguridad.lstVehiculo}"
+                             reflow="true"
+                             style="margin-top:10px!important;"
+                             selection="#{sinSeguridad.vehiculoSeleccionado}"
+                             rowKey="#{v.id}"
+                             paginator="true" rows="10"
+                             selectionMode="single"
+                             paginatorPosition="top"
+                             emptyMessage="no hay registros que mostrar">
+                    <f:facet name="header">
+                        <p:outputLabel value="Lista" style="float:left"></p:outputLabel>
+                        <p:commandButton value="Eliminar" style="float:right" actionListener="#{sinSeguridad.eliminar}"
+                                         update="@this principal"/>
+                        <p:commandButton value="Agregar" style="float:right"
+                                         actionListener="#{sinSeguridad.abrirModalSave}"
+                                         update="mSave"/>
+                        <div style="clear: both"></div>
+                    </f:facet>
+                    <p:column headerText="Identificador" style="text-align:center">
+                        <h:outputText value="#{v.id}" style="text-transform: uppercase"/>
+                    </p:column>
+                    <p:column headerText="Marca">
+                        <h:outputText value="#{v.marca}" style="text-transform: uppercase"/>
+                    </p:column>
+                    <p:column headerText="Modelo">
+                        <h:outputText value="#{v.modelo}" style="text-transform: uppercase"/>
+                    </p:column>
+                    <p:column headerText="Color">
+                        <h:outputText value="#{v.color}" style="text-transform: uppercase"/>
+                    </p:column>
+                    <p:column headerText="Transmision">
+                        <h:outputText value="#{v.transmision}" style="text-transform: uppercase"/>
+                    </p:column>
+                    <p:column headerText="Año" style="text-align:center">
+                        <h:outputText value="#{v.anio}" style="text-transform: uppercase"/>
+                    </p:column>
+                </p:dataTable>
+            </p:panel>
+        </h:form>
+        <p:dialog id="mSave" widgetVar="mSave" minHeight="40" width="800" showEffect="fade" modal="true"
+                  closable="false">
+            <h:form id="save">
+                <p:panel>
+                    <f:facet name="header">
+                        <p:outputLabel value="Registro de Vehiculos" style="float:left"/>
+                        <p:commandButton value="Cerrar" actionListener="#{sinSeguridad.cerrarModalSave}"
+                                         style="float:right"
+                                         resetValues="true" update="@this principal" process="@this"/>
+                        <p:commandButton value="Guardar" actionListener="#{sinSeguridad.guardar}" style="float:right"
+                                         update="principal"/>
+                    </f:facet>
+                    <p:panelGrid layout="grid" columns="4" style="width:100%"
+                                 columnClasses="ui-g-2,ui-g-4,ui-g-2,ui-g-4">
+                        <p:outputLabel for="marca" value="Marca"/>
+                        <p:inputText id="marca" value="#{sinSeguridad.marca}" required="true" autocomplete="off"
+                                     style="width:100%!important;text-transform: uppercase"/>
+                        <p:outputLabel for="modelo" value="Modelo"/>
+                        <p:inputText id="modelo" value="#{sinSeguridad.modelo}" required="true" autocomplete="off"
+                                     style="width:100%!important;text-transform: uppercase"/>
+                        <p:outputLabel for="color" value="Color"/>
+                        <p:inputText id="color" value="#{sinSeguridad.color}" required="true" autocomplete="off"
+                                     style="width:100%!important;text-transform: uppercase"/>
+                        <p:outputLabel for="transmision" value="Transmision"/>
+                        <p:inputText id="transmision" value="#{sinSeguridad.transmision}" required="true" autocomplete="off"
+                                     style="width:100%!important;text-transform: uppercase"/>
+                        <p:outputLabel for="año" value="Año"/>
+                        <p:inputText id="año" value="#{sinSeguridad.anio}" required="true" autocomplete="off"
+                                     style="width:100%!important;text-transform: uppercase"/>
+                    </p:panelGrid>
+                </p:panel>
+            </h:form>
+        </p:dialog>
+    </h:body>
+</f:view>

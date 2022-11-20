@@ -16,7 +16,9 @@ public class AppConfiguration {
     @Bean
     public DataSource dataSource(){
         DataSourceBuilder dataSourceBuilder = DataSourceBuilder.create();
-        dataSourceBuilder.url("jdbc:sqlserver://192.168.10.136;databaseName=PRUEBA;trustServerCertificate=true");
+        //dataSourceBuilder.url("jdbc:sqlserver://192.168.10.136;databaseName=PRUEBA;trustServerCertificate=true");
+        dataSourceBuilder.url("jdbc:sqlserver://localHost;databaseName=PRUEBA;trustServerCertificate=true");
+
         //dataSourceBuilder.username("sa");
       //  dataSourceBuilder.password("sqlserver");
         dataSourceBuilder.username(usuario);
