@@ -1,0 +1,13 @@
+el usuario y contraseña de la seguridad de la api son los siguientes:
+
+usuario= admin
+contraseña:1234
+
+lo menciono porque en el examen dado que se consume la api... agregue esa autentificacion por tanto tiene que concidir en el api
+
+las variables para base de datos en el api (descritas en el pom) son:
+usuarioProd y passwordProd
+
+las variables de la seguridad (descritas en el pom) son:
+usuarioLogin y claveLogin
+
